@@ -1,0 +1,61 @@
+class SymptomChecker:
+    def __init__(self):
+        self.symptoms = set()
+
+    def add_symptom(self, symptom):
+        self.symptoms.add(symptom.lower())
+
+    def diagnose(self):
+        # Rule-based diagnosis
+        s = self.symptoms
+        if 'fever' in s and 'cough' in s:
+            return ("You may have a respiratory infection. "
+                    "Common treatments include rest and staying hydrated. "
+                    "If symptoms persist, consult a healthcare professional.")
+        elif 'headache' in s and 'nausea' in s:
+            return ("You might be experiencing migraines. "
+                    "Consider managing stress, maintaining a regular sleep schedule, and keeping a headache diary. "
+                    "Consult a doctor for further evaluation.")
+        elif 'chest pain' in s and 'shortness of breath' in s:
+            return ("You could be at risk of a heart-related issue. "
+                    "Seek immediate medical attention. Avoid strenuous activities and consult a cardiologist.")
+        elif 'abdominal pain' in s and 'vomiting' in s:
+            return ("These symptoms may indicate a gastrointestinal problem. "
+                    "Avoid spicy and fatty foods, and stay hydrated. "
+                    "If symptoms persist, consult a gastroenterologist.")
+        elif 'joint pain' in s and 'fatigue' in s:
+            return ("These symptoms may be related to arthritis. "
+                    "Consider gentle exercises, hot/cold therapy, and over-the-counter pain relievers. "
+                    "Consult with a rheumatologist.")
+        elif 'skin rash' in s and 'itching' in s:
+            return ("These symptoms may be indicative of an allergic reaction or skin condition. "
+                    "Avoid known allergens and use over-the-counter creams. "
+                    "Consult a dermatologist.")
+        elif 'frequent urination' in s and 'thirst' in s:
+            return ("You may have symptoms of diabetes. "
+                    "Monitor your blood sugar, maintain a healthy diet, and stay hydrated. "
+                    "Consult a healthcare professional.")
+        elif 'confusion' in s and 'memory loss' in s:
+            return ("These symptoms could be signs of neurological issues. "
+                    "Ensure a healthy diet, regular exercise, and sufficient sleep. "
+                    "Consult a neurologist.")
+        elif 'muscle weakness' in s and 'fatigue' in s:
+            return ("Muscle weakness and fatigue may be related to autoimmune disorders or other issues. "
+                    "Get adequate rest, eat balanced meals, and consult a doctor.")
+        else:
+            return "Not enough information for diagnosis. Please consult a healthcare professional for a thorough evaluation."
+
+
+if __name__ == "__main__":
+    expert_system = SymptomChecker()
+    print("Enter symptoms one by one (press Enter after each symptom). Type 'done' when finished.")
+    
+    while True:
+        symptom = input("Symptom: ").strip().lower()
+        if symptom == 'done':
+            break
+        expert_system.add_symptom(symptom)
+    
+    result = expert_system.diagnose()
+    print("\nDiagnosis:")
+    print(result)
